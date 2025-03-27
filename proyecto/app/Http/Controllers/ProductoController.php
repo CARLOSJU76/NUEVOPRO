@@ -15,7 +15,10 @@ class ProductoController extends Controller
         return view('producto.bye');
     }
     public function viewProducto(){
-        return view('producto.viewProducto');
+
+        $productos= Producto::all();
+
+        return view('producto.viewProducto', compact('productos'));
     }
     // public function viewInsertProd(){
     //     return view('producto.viewInsertProd');
@@ -38,16 +41,20 @@ class ProductoController extends Controller
         ]);
 
         $producto = new Producto();
+
+        if($request->hasFile('foto')){
+            $imagen= $request->file('foto');
+            $nombreImagen=$imagen->getClientOriginalName();
+            $rutaImagen=$imagen->storeAs('productos', $nombreImagen, 'public');
+
+        }
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
         $producto->id_tipo = $request->id_tipo;
+        $producto->foto=$nombreImagen;
 
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $path = $file->store('public/productos'); // Guarda en storage/app/public/productos
-            $producto->foto = str_replace('public/', 'storage/', $path); // Ajusta para acceso público
-        }
             $producto->save();
             return back()->with('success', 'Producto agregado correctamente');
     }
+    
 }
