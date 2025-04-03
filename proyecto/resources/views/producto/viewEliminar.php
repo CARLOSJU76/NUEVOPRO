@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($lospitufos as $producto)
+    @foreach($productos as $producto)
     
     <tr>
       <th scope="row">{{$producto->id}}</th>

@@ -11,6 +11,7 @@
 <a href="insertar">Inserción de Productos</a> |
 <a href="producto">Productos</a> |
 <a href="categoria">Insertar Categoría</a> |
+<a href="eliminar">Eliminar</a> |
 <a href="bye">Gracias por Visitarnos</a> |
 <br>
 @yield('content') 

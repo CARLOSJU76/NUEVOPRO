@@ -16,9 +16,9 @@ class ProductoController extends Controller
     }
     public function viewProducto(){
 
-        $productos= Producto::all();
+        $lospitufos= Producto::all();
 
-        return view('producto.viewProducto', compact('productos'));
+        return view('producto.viewProducto', compact('lospitufos'));
     }
     // public function viewInsertProd(){
     //     return view('producto.viewInsertProd');
@@ -55,6 +55,14 @@ class ProductoController extends Controller
 
             $producto->save();
             return back()->with('success', 'Producto agregado correctamente');
+    }
+
+    public function viewErase()
+    {
+        // Obtener todos los productos:
+        $productos= Producto::all();
+   
+        return view('producto.viewEliminar', compact('productos'));  // Aquí 'tipos' será la variable que contiene los tipos de productos
     }
     
 }
