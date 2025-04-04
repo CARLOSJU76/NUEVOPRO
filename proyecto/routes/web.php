@@ -18,4 +18,5 @@ Route::post('/Producto', [ProductoController::class, 'store'])->name('producto.i
 Route::get('categoria',[IdTiposController::class,'viewTipos']);
 //Route::get('/tipo_producto', [Id_tiposController::class, 'viewTipos'])->name('producto.view__tipoP');
 Route::post('/categoria',[IdTiposController::class, 'storeTipo'])->name('insertarCategoria');
-Route::get('/eliminar',[ProductoController::class,'viewErase']);
+Route::get('/eliminar',[ProductoController::class,'viewDelete'])->name('eliminar');
+Route::delete('/eliminarP/{id}',[ProductoController::class,'eliminarP'])->name('eliminarP');

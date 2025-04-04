@@ -57,12 +57,22 @@ class ProductoController extends Controller
             return back()->with('success', 'Producto agregado correctamente');
     }
 
-    public function viewErase()
+    public function viewDelete()
     {
         // Obtener todos los productos:
         $productos= Producto::all();
    
         return view('producto.viewEliminar', compact('productos'));  // Aquí 'tipos' será la variable que contiene los tipos de productos
+    }
+    public function eliminarP($id)
+    {
+        $producto= Producto::find($id);
+        //dd($producto);
+        if(! $producto){
+            return redirect()->route('eliminar')->with('error', 'Producto ni encintrado');
+        }
+        $producto->delete();
+        return redirect()->route('eliminar')->with('success', 'Producto eliminado correctamente');
     }
     
 }
